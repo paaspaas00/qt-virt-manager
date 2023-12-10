@@ -1,9 +1,15 @@
 qt-virt-manager
 =================
-![Main widget]( https://github.com/F1ash/qt-virt-manager/blob/gh-pages/images/snapshot12.png )
-
 
 A GUI application for managing virtual machines.
+At the moment icons from the original icon pack are disabled, names are somewhat changed to use Breeze system icons (KDE Plasma 5+), so Win & Mac users may experience problems
+
+![Screenshot_20231210_224103](https://github.com/paaspaas00/qt-virt-manager/assets/151774837/d59304cc-7b53-4275-b963-e44df025d97a)
+
+![Screenshot_20231210_224243](https://github.com/paaspaas00/qt-virt-manager/assets/151774837/76d26d4a-3c83-4447-8c36-b5cdfe8c28b3)
+
+![Screenshot_20231210_224411](https://github.com/paaspaas00/qt-virt-manager/assets/151774837/157cab3d-09ff-4846-8418-658485f52cb5)
+
 
 Known issues:
 
