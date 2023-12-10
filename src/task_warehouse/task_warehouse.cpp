@@ -70,11 +70,8 @@ void TaskWareHouse::addNewTask(TASK *task)
     //s<<" addNewTask_TASK" <<endl;
 
     ++counter;
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    
     QString _number = QString("").asprintf("%08d", counter);
-#else
-    QString _number = QString("").sprintf("%08d", counter);
-#endif
     if ( task->method!=Methods::reloadEntity &&
          task->action!=Actions::EDIT_ENTITY ) {
         QString _name = QString("%5 %1 %2 <%3> in <%4>")
@@ -92,17 +89,11 @@ void TaskWareHouse::addNewTask(TASK *task)
         itemData.insert("Object", task->object);
         itemData.insert("Action", TO_STRING->enumToMethodString(task->method));
         itemData.insert("Start", QString("%1:%2:%3:%4")
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
                         .arg(QString("").asprintf("%02d", _time.hour()))
                         .arg(QString("").asprintf("%02d", _time.minute()))
                         .arg(QString("").asprintf("%02d", _time.second()))
                         .arg(QString("").asprintf("%03d", _time.msec())));
-#else
-                        .arg(QString("").sprintf("%02d", _time.hour()))
-                        .arg(QString("").sprintf("%02d", _time.minute()))
-                        .arg(QString("").sprintf("%02d", _time.second()))
-                        .arg(QString("").sprintf("%03d", _time.msec())));
-#endif
+
         itemData.insert("End", "-");
         itemData.insert("Arguments", task->args.list());
         itemData.insert("Result", tr("Processing"));
@@ -111,11 +102,11 @@ void TaskWareHouse::addNewTask(TASK *task)
         setNewTooltip(_item);
         taskList->addItem(_item);
     };
-    if        ( task->type == VIRT_ENTITY::VIRT_DOMAIN ) {
+    if (task->type == VIRT_ENTITY::VIRT_DOMAIN) {
         threadPool->insert(
                     _number,
                     new DomControlThread(this));
-    } else if ( task->type == VIRT_ENTITY::VIRT_NETWORK ) {
+    } else if (task->type == VIRT_ENTITY::VIRT_NETWORK) {
         threadPool->insert(
                     _number,
                     new NetControlThread(this));
@@ -161,11 +152,7 @@ void TaskWareHouse::closeEvent(QCloseEvent *ev)
 void TaskWareHouse::msgRepeater(const QString &msg, const uint _number)
 {
     QString time = QTime::currentTime().toString();
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     QString number = QString("").asprintf("%08d", _number);
-#else
-    QString number = QString("").sprintf("%08d", _number);
-#endif
     QString title = QString(tr("in TASK %1 %2"))
             .arg(QChar(0x273B)).arg(number);
     QString currMsg = QString(
@@ -193,11 +180,8 @@ void TaskWareHouse::taskResultReceiver(Result data)
     } else {
         correctly = false;
     };
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    
     QString _number = QString("").asprintf("%08d", data.number);
-#else
-    QString _number = QString("").sprintf("%08d", data.number);
-#endif
     ControlThread *cThread = static_cast<ControlThread*>(
                 threadPool->take(_number));
     if ( Q_NULLPTR!=cThread ) {
@@ -221,17 +205,10 @@ void TaskWareHouse::taskResultReceiver(Result data)
         QVariantMap _data = _list.at(0)->data(Qt::UserRole).toMap();
         QTime _time = QTime::currentTime();
         _data.insert("End", QString("%1:%2:%3:%4")
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
                      .arg(QString("").asprintf("%02d", _time.hour()))
                      .arg(QString("").asprintf("%02d", _time.minute()))
                      .arg(QString("").asprintf("%02d", _time.second()))
                      .arg(QString("").asprintf("%03d", _time.msec())));
-#else
-                     .arg(QString("").sprintf("%02d", _time.hour()))
-                     .arg(QString("").sprintf("%02d", _time.minute()))
-                     .arg(QString("").sprintf("%02d", _time.second()))
-                     .arg(QString("").sprintf("%03d", _time.msec())));
-#endif
         _data.insert("Result", (data.result)? tr("Success"): tr("Fail"));
         _data.insert("Message", data.msg.join("\n"));
         _data.insert("Error", data.err);

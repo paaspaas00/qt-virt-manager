@@ -47,37 +47,43 @@ CreateVolume::CreateVolume(
     QString _title =
             QString(tr("Create Volume in [%1] Pool"))
             .arg(_poolName);
+
     setWindowTitle(_title);
     setUrl("http://libvirt.org/formatstorage.html");
+
     settingName.append("CreateStorageVolume");
     settings.beginGroup(settingName);
-    restoreGeometry(
-                settings.value("Geometry").toByteArray());
-    showAtClose->setChecked(
-                settings.value("ShowAtClose").toBool() );
+    restoreGeometry(settings.value("Geometry").toByteArray());
+    showAtClose->setChecked(settings.value("ShowAtClose").toBool() );
     settings.endGroup();
     suff->setVisible(true);
+
     allocLabel = new QComboBox(this);
     allocLabel->addItem("Allocation (KiB):", "KiB");
     allocLabel->addItem("Allocation (MiB):", "MiB");
     allocLabel->addItem("Allocation (GiB):", "GiB");
     allocLabel->addItem("Allocation (TiB):", "TiB");
     allocLabel->addItem("Allocation (EiB):", "EiB");
+
     capLabel = new QComboBox(this);
     capLabel->addItem("Capacity (KiB):", "KiB");
     capLabel->addItem("Capacity (MiB):", "MiB");
     capLabel->addItem("Capacity (GiB):", "GiB");
     capLabel->addItem("Capacity (TiB):", "TiB");
     capLabel->addItem("Capacity (EiB):", "EiB");
+
     allocation = new QSpinBox(this);
-    allocation->setRange(0, 1024000000); // 1024Mib
+    allocation->setRange(0, 1024 * 1000 * 1000); // 1024Mib
+
     capacity = new QSpinBox(this);
-    capacity->setRange(0, 1024000000); // 1024Mib
+    capacity->setRange(0, 1024 * 1000 * 1000); // 1024Mib
+
     sizeLayout = new QGridLayout();
     sizeLayout->addWidget(allocLabel, 0, 0);
     sizeLayout->addWidget(allocation, 0, 1);
     sizeLayout->addWidget(capLabel, 1, 0);
     sizeLayout->addWidget(capacity, 1, 1);
+
     sizeWdg = new QWidget(this);
     sizeWdg->setLayout(sizeLayout);
 
@@ -187,12 +193,10 @@ QString CreateVolume::getXMLDescFileName() const
     _volume.appendChild(_name);
     _allocation = doc.createElement("allocation");
     _text = doc.createTextNode(allocation->text());
-    _allocation.setAttribute(
-                "unit",
-                allocLabel->itemData(
-                    allocLabel->currentIndex(),
-                    Qt::UserRole).toString());
+
+    _allocation.setAttribute("unit", allocLabel->itemData(allocLabel->currentIndex(), Qt::UserRole).toString());
     _allocation.appendChild(_text);
+
     _volume.appendChild(_allocation);
     _capacity = doc.createElement("capacity");
     _text = doc.createTextNode(capacity->text());
@@ -261,31 +265,28 @@ QString CreateVolume::getXMLDescFileName() const
 void CreateVolume::initData()
 {
     // set pool type, but need volume type
-    type->addItem(hlpThread->type);
+    this->type->addItem(hlpThread->type);
 
     //source = new _Storage_Source(this);
-    target = new _Storage_Target(this, ptr_ConnPtr, hlpThread->type);
-    target->formatWdg->setVisible(true);
-    target->encrypt->setVisible(true);
-    target->pathWdg->setVisible(true);
+    this->target = new _Storage_Target(this, ptr_ConnPtr, hlpThread->type);
+    this->target->formatWdg->setVisible(true);
+    this->target->encrypt->setVisible(true);
+    this->target->pathWdg->setVisible(true);
 
-    infoStuffLayout = new QVBoxLayout();
+    this->infoStuffLayout = new QVBoxLayout();
     //infoStuffLayout->addWidget(source);
-    infoStuffLayout->addWidget(target);
-    infoStuffLayout->addStretch(-1);
-    infoStuff = new QWidget(this);
-    infoStuff->setLayout(infoStuffLayout);
-    info->addWidget(infoStuff);
+    this->infoStuffLayout->addWidget(target);
+    this->infoStuffLayout->addStretch(-1);
+    
+    this->infoStuff = new QWidget(this);
+    this->infoStuff->setLayout(infoStuffLayout);
+    this->info->addWidget(infoStuff);
 
-    commonLayout->insertWidget(
-                commonLayout->count()-1, sizeWdg);
-    commonLayout->insertWidget(
-                commonLayout->count()-1, infoWidget, -1);
-    connect(allocLabel, SIGNAL(currentIndexChanged(int)),
-            capLabel, SLOT(setCurrentIndex(int)));
-    connect(capLabel, SIGNAL(currentIndexChanged(int)),
-            allocLabel, SLOT(setCurrentIndex(int)));
-    allocLabel->setCurrentIndex(1);
+    this->commonLayout->insertWidget(commonLayout->count() - 1, sizeWdg);
+    this->commonLayout->insertWidget(commonLayout->count() - 1, infoWidget, -1);
+    this->connect(allocLabel, SIGNAL(currentIndexChanged(int)), capLabel, SLOT(setCurrentIndex(int)));
+    this->connect(capLabel, SIGNAL(currentIndexChanged(int)), allocLabel, SLOT(setCurrentIndex(int)));
+    this->allocLabel->setCurrentIndex(1);
     //capLabel->setCurrentIndex(1);
 
     readXMLDataDescription();

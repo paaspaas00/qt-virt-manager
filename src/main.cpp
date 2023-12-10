@@ -4,21 +4,27 @@
 
 int main(int argc, char *argv[])
 {
-    Q_INIT_RESOURCE(qt_virt_manager);
-    QApplication a(argc, argv);
+    //Q_INIT_RESOURCE(qt_virt_manager);
+    QApplication app(argc, argv);
+
     QString name("qt-virt-manager");
-    a.setOrganizationName(name);
-    a.setApplicationName(name);
+    app.setOrganizationName(name);
+    app.setApplicationName(name);
+
     QSettings::setDefaultFormat(QSettings::IniFormat);
-    QTranslator tr;
-    QLocale lc = QLocale();
-    if ( lc.language() == QLocale::Russian ) {
-        tr.load("qt_virt_manager_ru");
-    } else if ( lc.language() == QLocale::Italian ) {
-        tr.load("qt_virt_manager_it");
+    
+    QTranslator translator;
+    QLocale locale = QLocale();
+    if (locale.language() == QLocale::Russian) {
+        translator.load("qt_virt_manager_ru");
+    } else if (locale.language() == QLocale::Italian) {
+        translator.load("qt_virt_manager_it");
     };
-    a.installTranslator(&tr);
-    MainWindow w;
-    w.show();
-    return a.exec();
+
+    app.installTranslator(&translator);
+
+    MainWindow window;
+    window.show();
+
+    return app.exec();
 }

@@ -122,11 +122,7 @@ void VM_Viewer_Only::parseURL()
         port    = vv_file.value("port").toString();
         socket  = vv_file.value("socket").toString();
         vv_file.endGroup();
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     } else if ( url.split("://", Qt::SkipEmptyParts).count()>1 ) {
-#else
-    } else if ( url.split("://", QString::SkipEmptyParts).count()>1 ) {
-#endif
         QStringList parts1 = url.split("://").at(1).split("/");
         host = parts1.first();
         if ( host.isEmpty() ) {
@@ -136,11 +132,7 @@ void VM_Viewer_Only::parseURL()
         if ( _parts.count()>1 ) {
             // address has extra parameters
             QVariantMap _data;
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
             foreach (QString _str, _parts.at(1).split("&", Qt::SkipEmptyParts)) {
-#else
-            foreach (QString _str, _parts.at(1).split("&", QString::SkipEmptyParts)) {
-#endif
                 QStringList _params = _str.split("=");
                 _data.insert(_params.first(), _params.last());
             };

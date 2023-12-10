@@ -7,29 +7,42 @@ TrayIcon::TrayIcon(QWidget *parent)
     timerId = 0;
     appIcon = QIcon::fromTheme("virtual-engineering");
     warningIcon = QIcon::fromTheme("dialog-warning");
+
     setIcon(appIcon);
+
     hideAction = new QAction(tr("Down"), this);
     hideAction->setIcon (QIcon::fromTheme("down"));
+
     //logUpAction = new QAction(tr("Show Log Viewer"), this);
     //logUpAction->setIcon ( QIcon::fromTheme("utilities-log-viewer") );
+
     monitorAction = new QAction(tr("Domains State Monitor"), this);
     monitorAction->setIcon ( QIcon::fromTheme("utilities-monitor") );
+
     taskUpAction = new QAction(tr("Task WareHouse"), this);
     taskUpAction->setIcon ( QIcon::fromTheme("job") );
+
     closeAction = new QAction(tr("Exit"), this);
-    closeAction->setIcon (QIcon::fromTheme("exit", QIcon(":/exit.png")));
+    closeAction->setIcon (QIcon::fromTheme("application-exit"));
 
     trayIconMenu = new QMenu(parent);
     trayIconMenu->addAction(hideAction);
+
     trayIconMenu->addSeparator();
+
     //trayIconMenu->addAction(logUpAction);
     trayIconMenu->addAction(monitorAction);
     trayIconMenu->addAction(taskUpAction);
+
     trayIconMenu->addSeparator();
+
     trayIconMenu->addAction(closeAction);
 
+
     setToolTip(tr("Qt VirtManager"));
+    
     setContextMenu(trayIconMenu);
+
     show();
 }
 

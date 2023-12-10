@@ -11,40 +11,55 @@ ViewerToolBar::ViewerToolBar(QWidget *parent) :
     //restore_Action = start_Menu->addAction(tr("Restore"));
     //restore_Action->setIcon(QIcon::fromTheme("start"));
     //start_Action->setMenu(start_Menu);
+
     pause_Action = new QAction(this);
-    pause_Action->setIcon(QIcon::fromTheme("pause"));
+    pause_Action->setIcon(QIcon::fromTheme("media-playback-pause"));
     pause_Action->setToolTip(tr("Pause"));
+
+
     destroy_Menu = new QMenu(this);
     reboot_Action = destroy_Menu->addAction(tr("Reboot"));
     reboot_Action->setIcon(QIcon::fromTheme("reboot"));
     reset_Action = destroy_Menu->addAction(tr("Reset"));
     reset_Action->setIcon(QIcon::fromTheme("reset"));
+
     destroy_Menu->addSeparator();
+
     shutdown_Action = destroy_Menu->addAction(tr("Shutdown"));
     shutdown_Action->setIcon(QIcon::fromTheme("shutdown"));
+
     save_Action = destroy_Menu->addAction(tr("Save"));
-    save_Action->setIcon(QIcon::fromTheme("save"));
+    save_Action->setIcon(QIcon::fromTheme("document-save"));
+
     destroy_Action = new QAction(this);
-    destroy_Action->setIcon(QIcon::fromTheme("destroy"));
+    destroy_Action->setIcon(QIcon::fromTheme("media-playback-stop"));
     destroy_Action->setToolTip(tr("Stop"));
     destroy_Action->setMenu(destroy_Menu);
+
+
     snapshot_Menu = new QMenu(this);
     createSnapshot = snapshot_Menu->addAction(
                 tr("create Snapshot of Current Domain"));
+
     createSnapshot->setIcon(QIcon::fromTheme("camera-photo"));
     moreSnapshot_Actions = snapshot_Menu->addAction(
                 tr("more Snapshot actions for Domain"));
     moreSnapshot_Actions->setIcon(QIcon::fromTheme("camera-photo"));
+
     snapshot_Action = new QAction(this);
+
     snapshot_Action->setIcon(QIcon::fromTheme("camera-photo"));
     snapshot_Action->setToolTip(tr("Snapshot now!"));
     snapshot_Action->setMenu(snapshot_Menu);
+
     reconnect_Action = new QAction(this);
     reconnect_Action->setIcon(QIcon::fromTheme("view-refresh"));
     reconnect_Action->setToolTip(tr("Reconnect"));
+
     keySeq_Action = new QAction(this);
     keySeq_Action->setIcon(QIcon::fromTheme("input-keyboard"));
     keySeq_Action->setToolTip(tr("Send key sequence"));
+
     keySequenceMenu = new QMenu(this);
     keySeq_Action->setMenu(keySequenceMenu);
     sendKeySeq_BackSpc = keySequenceMenu->addAction("Ctrl+Alt+BackSpace");
@@ -60,39 +75,55 @@ ViewerToolBar::ViewerToolBar(QWidget *parent) :
     sendKeySeq_8 = keySequenceMenu->addAction("Ctrl+Alt+F8");
     keySequenceMenu->addSeparator();
     getScreenshot = keySequenceMenu->addAction(tr("get Guest Screenshot"));
+
     copyFiles_Action = new QAction(this);
     copyFiles_Action->setIcon(QIcon::fromTheme("document-send"));
     copyFiles_Action->setToolTip(tr("Copy Files to Guest"));
+    
     copyToClipboard = new QAction(this);
     copyToClipboard->setIcon(QIcon::fromTheme("edit-copy"));
     copyToClipboard->setToolTip(tr("Copy from Guest to Clipboard"));
+
     pasteClipboard = new QAction(this);
     pasteClipboard->setIcon(QIcon::fromTheme("edit-paste"));
     pasteClipboard->setToolTip(tr("Paste Clipboard to Guest"));
+
     fullScreen = new QAction(this);
-    fullScreen->setIcon(QIcon::fromTheme("fullscreen"));
+    fullScreen->setIcon(QIcon::fromTheme("view-fullscreen"));
     fullScreen->setToolTip(tr("FullScreen"));
     scaled_to = new QAction(this);
-    scaled_to->setIcon(QIcon::fromTheme("scaled_to_window"));
+
+    scaled_to->setIcon(QIcon::fromTheme("zoom-fit-best"));
     scaled_to->setToolTip(tr("Scale to window"));
+
     vm_stateWdg = new VM_State_Widget(this);
 
     //addAction(start_Action);
     addAction(pause_Action);
     addAction(destroy_Action);
+
     sep1 = addSeparator();
+
     addAction(snapshot_Action);
+
     sep2 = addSeparator();
+
     addAction(reconnect_Action);
+
     addSeparator();
+
     addAction(keySeq_Action);
     addAction(copyFiles_Action);
     addAction(copyToClipboard);
     addAction(pasteClipboard);
+
     addSeparator();
+
     addAction(fullScreen);
     addAction(scaled_to);
+
     addSeparator();
+
     stateWdg_Action = addWidget(vm_stateWdg);
 
     connect(this, SIGNAL(actionTriggered(QAction*)),

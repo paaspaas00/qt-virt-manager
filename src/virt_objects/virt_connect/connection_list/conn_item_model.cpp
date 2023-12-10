@@ -3,9 +3,10 @@
 ConnItemModel::ConnItemModel(QObject *parent) :
     QAbstractTableModel(parent)
 {
-    onViewIcon = QIcon::fromTheme("overview");
-    activeIcon = QIcon::fromTheme("connect");
-    no_activeIcon = QIcon::fromTheme("disconnect");
+    onViewIcon = QIcon::fromTheme("view-visible");
+    activeIcon = QIcon::fromTheme("network-connect");
+    no_activeIcon = QIcon::fromTheme("network-disconnect");
+    
     uri_logo.insert("test", QIcon::fromTheme("wipe"));
     uri_logo.insert("lxc", QIcon::fromTheme("lxc"));
     uri_logo.insert("qemu", QIcon::fromTheme("qemu"));
@@ -14,7 +15,7 @@ ConnItemModel::ConnItemModel(QObject *parent) :
     uri_logo.insert("esx", QIcon::fromTheme("vmware"));
     uri_logo.insert("gsx", QIcon::fromTheme("vmware"));
     uri_logo.insert("vpx", QIcon::fromTheme("vmware"));
-    uri_logo.insert("vbox", QIcon::fromTheme("vbox"));
+    uri_logo.insert("vbox", QIcon::fromTheme("virtualbox"));
     uri_logo.insert("openvz", QIcon::fromTheme("openvz"));
     uri_logo.insert("hyperv", QIcon::fromTheme("hyperv"));
     uri_logo.insert("phyp", QIcon::fromTheme("phyp"));

@@ -5,6 +5,8 @@ _List_Widget::_List_Widget(QWidget *parent, QString tag) :
 {
     list = new QListWidget(this);
     list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    list->setAlternatingRowColors(true);
+
     add = new QPushButton(
                 QIcon::fromTheme("list-add"), "", this);
     del = new QPushButton(

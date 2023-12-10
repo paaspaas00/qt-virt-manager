@@ -1,10 +1,10 @@
 #include "storage_pool_control_menu.h"
 
 StoragePoolControlMenu::StoragePoolControlMenu(
-        QWidget *parent, QVariantMap params, bool state) :
-    QMenu(parent), autoReloadState(state)
+    QWidget *parent, QVariantMap params, bool state) : QMenu(parent), autoReloadState(state)
 {
-    if ( !params.isEmpty() ) {
+    if (!params.isEmpty())
+    {
         active = params.value("active", false).toBool();
         autostart = params.value("auto", false).toBool();
         persistent = params.value("persistent", false).toBool();
@@ -24,8 +24,8 @@ StoragePoolControlMenu::StoragePoolControlMenu(
         delete_Action = new QAction(tr("Delete"), this);
         delete_Action->setIcon(QIcon::fromTheme("delete"));
         delete_Action->setMenu(delete_Menu);
-        connect(delete_Menu, SIGNAL(execMethod(const Act_Param&)),
-                this, SIGNAL(execMethod(const Act_Param&)));
+        connect(delete_Menu, SIGNAL(execMethod(const Act_Param &)),
+                this, SIGNAL(execMethod(const Act_Param &)));
         getXMLDesc = new QAction(tr("get XML Description"), this);
         getXMLDesc->setIcon(QIcon::fromTheme("application-xml"));
         getXMLDesc->setEnabled(true);
@@ -49,28 +49,43 @@ StoragePoolControlMenu::StoragePoolControlMenu(
     reload->setEnabled(!autoReloadState);
 
     addAction(reload);
-    connect(this, SIGNAL(triggered(QAction*)),
-            this, SLOT(emitExecMethod(QAction*)));
+    connect(this, SIGNAL(triggered(QAction *)),
+            this, SLOT(emitExecMethod(QAction *)));
 }
 
 void StoragePoolControlMenu::emitExecMethod(QAction *action)
 {
     Act_Param paramList;
-    if ( action == start) {
+    if (action == start)
+    {
         paramList.method = Methods::startEntity;
-    } else if ( action == destroy ) {
+    }
+    else if (action == destroy)
+    {
         paramList.method = Methods::destroyEntity;
-    } else if ( action == undefine ) {
+    }
+    else if (action == undefine)
+    {
         paramList.method = Methods::undefineEntity;
-    } else if ( action == autoStart ) {
+    }
+    else if (action == autoStart)
+    {
         paramList.method = Methods::setAutostartEntity;
-        paramList.path = (autostart)? "0" : "1";
-    } else if ( action == getXMLDesc ) {
+        paramList.path = (autostart) ? "0" : "1";
+    }
+    else if (action == getXMLDesc)
+    {
         paramList.method = Methods::getEntityXMLDesc;
-    } else if ( action == overview ) {
+    }
+    else if (action == overview)
+    {
         paramList.method = Methods::overviewEntity;
-    } else if ( action == reload ) {
+    }
+    else if (action == reload)
+    {
         paramList.method = Methods::reloadEntity;
-    } else return;
+    }
+    else
+        return;
     emit execMethod(paramList);
 }

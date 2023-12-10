@@ -4,12 +4,17 @@ ConnectionList::ConnectionList(QWidget *parent)
     : TreeView(parent)
 {
     this->setEnabled(false);
-    this->setContextMenuPolicy ( Qt::CustomContextMenu );
-    this->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
-    setContentsMargins (1, 1, 1, 1);
-    setDefaultDropAction ( Qt::IgnoreAction );
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu );
+    this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+    setContentsMargins(1, 1, 1, 1);
+    setDefaultDropAction(Qt::IgnoreAction );
     setCursor(Qt::ArrowCursor);
     setSortingEnabled(true);
+
+    this->setAlternatingRowColors(true);
+
     this->setItemsExpandable(false);
     this->setRootIsDecorated(false);
     connItemModel = new ConnItemModel(this);
@@ -389,7 +394,7 @@ void ConnectionList::connContextMenuRequested(const QPoint &pos)
     ConnectionMenu *connMenu = new ConnectionMenu(this);
     if ( conn_Status.value("isRunning", CLOSED).toInt()==RUNNING ) {
         connMenu->act->setText(tr("Close Connection"));
-        connMenu->act->setIcon(QIcon::fromTheme("disconnect"));
+        connMenu->act->setIcon(QIcon::fromTheme("network-disconnect"));
         connect(connMenu->act, SIGNAL(triggered()),
                 this, SLOT(connItemKillAction()));
         //connMenu->clean->setEnabled(true);
@@ -397,7 +402,7 @@ void ConnectionList::connContextMenuRequested(const QPoint &pos)
         to_run = TO_STOP;
     } else {
         connMenu->act->setText(tr("Open Connection"));
-        connMenu->act->setIcon(QIcon::fromTheme("connect"));
+        connMenu->act->setIcon(QIcon::fromTheme("network-connect"));
         connect(connMenu->act, SIGNAL(triggered()),
                 this, SLOT(connItemRunAction()));
         //connMenu->clean->setEnabled(false);

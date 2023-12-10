@@ -17,6 +17,10 @@ VirtSecretControl::VirtSecretControl(QWidget *parent) :
     settings.beginGroup("VirtSecretControl");
     entityList->setColumnWidth(0, settings.value("column0", 132).toInt());
     entityList->setColumnWidth(1, settings.value("column1", 32).toInt());
+
+    entityList->setAlternatingRowColors(true);
+    entityList->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+
     int area_int = settings.value("ToolBarArea", 4).toInt();
     settings.endGroup();
     toolBar = new VirtSecretToolBar(this);

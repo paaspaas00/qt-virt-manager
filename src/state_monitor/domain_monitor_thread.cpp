@@ -19,7 +19,9 @@ DomainMonitorThread::~DomainMonitorThread()
         int ret = virConnectClose(*ptr_ConnPtr);
         //qDebug()<<"virConnectRef -1"<<"DomainStateViewer"<<domainName<<(ret+1>0);
         // for reject the multiple releasing the reference
-        if ( ret<0 ) sendConnErrors();
+        if (ret < 0) {
+            sendConnErrors();
+        }
         //*ptr_ConnPtr = Q_NULLPTR;
     };
 }

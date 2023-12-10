@@ -112,19 +112,19 @@ void ResizeDialog::changeRange(int i)
 }
 void ResizeDialog::changeRangeLong(unsigned long long i)
 {
-    if        ( i >= TiB ) {
+    if (i >= TiB) {
         sizeLabel->setText(tr("Size (TiB):"));
         currentRange = TiB;
         size->setValue(i/TiB);
-    } else if ( i >= GiB ) {
+    } else if (i >= GiB) {
         sizeLabel->setText(tr("Size (GiB):"));
         currentRange = GiB;
         size->setValue(i/GiB);
-    } else if ( i >= MiB ) {
+    } else if (i >= MiB) {
         sizeLabel->setText(tr("Size (MiB):"));
         currentRange = MiB;
         size->setValue(i/MiB);
-    } else if ( i >= KiB ) {
+    } else if (i >= KiB) {
         sizeLabel->setText(tr("Size (KiB):"));
         currentRange = KiB;
         size->setValue(i/KiB);

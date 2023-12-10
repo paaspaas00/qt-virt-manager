@@ -16,6 +16,10 @@ VirtEntityControl::VirtEntityControl(QWidget *parent) :
     entityList->setRootIsDecorated(false);
     entityList->setFocus();
     entityList->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    entityList->setAlternatingRowColors(true);
+    entityList->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+
     setCentralWidget(entityList);
 }
 VirtEntityControl::~VirtEntityControl()

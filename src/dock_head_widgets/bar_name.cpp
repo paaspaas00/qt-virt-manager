@@ -19,7 +19,7 @@ void BarNameLabel::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
+    //painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(_color);
     painter.translate(_size, size().height());
     painter.rotate(270);

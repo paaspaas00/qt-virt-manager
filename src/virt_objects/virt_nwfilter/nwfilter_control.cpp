@@ -15,8 +15,12 @@ VirtNWFilterControl::VirtNWFilterControl(QWidget *parent) :
     connect(entityList, SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SLOT(entityClicked(const QPoint&)));
     settings.beginGroup("VirtNWFilterControl");
-    entityList->setColumnWidth(0, settings.value("column0", 132).toInt());
-    entityList->setColumnWidth(1, settings.value("column1", 32).toInt());
+    //entityList->setColumnWidth(0, settings.value("column0", 132).toInt());
+    //entityList->setColumnWidth(1, settings.value("column1", 32).toInt());
+
+    entityList->setAlternatingRowColors(true);
+    entityList->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+
     int area_int = settings.value("ToolBarArea", 4).toInt();
     settings.endGroup();
     toolBar = new VirtNWFilterToolBar(this);

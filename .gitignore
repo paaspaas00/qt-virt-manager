@@ -8,3 +8,6 @@ install_manifest.txt
 *build*
 make-source-archive
 qrc_icons_gen.py
+*.depends
+moc_*
+*.qm

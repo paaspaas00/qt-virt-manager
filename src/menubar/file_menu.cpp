@@ -4,11 +4,11 @@ FileMenu::FileMenu(QWidget *parent) :
     QMenu(parent)
 {
     newConn = addAction(
-                QIcon::fromTheme("connection-wizard"),
+                QIcon::fromTheme("window-new"),//QIcon::fromTheme("connection-wizard")
                 tr("&New connection"));
     newConn->setShortcut(QKeySequence(tr("Ctrl+N")));
     hideToTray = addAction(
-                QIcon::fromTheme("down"),
+                QIcon::fromTheme("go-down"),
                 tr("&Hide to tray"));
     restart = addAction(
                 QIcon::fromTheme("view-refresh"),
@@ -16,7 +16,7 @@ FileMenu::FileMenu(QWidget *parent) :
     restart->setShortcut(QKeySequence(tr("Ctrl+R")));
     addSeparator();
     exitApp = addAction(
-                QIcon::fromTheme("exit"),
+                QIcon::fromTheme("application-exit"),
                 tr("&Exit"));
     exitApp->setShortcut(QKeySequence(tr("Ctrl+Q")));
 }

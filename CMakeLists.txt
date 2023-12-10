@@ -1,3 +1,6 @@
+#cmake_minimum_required (VERSION 2.8.3)
+cmake_minimum_required (VERSION 3.27)
+
 project(qt-virt-manager CXX)
 
 # TODO: make a cross platform here
@@ -19,7 +22,6 @@ list(APPEND CMAKE_PREFIX_PATH
     ${SPICE_LIB_PATH}
 )
 
-cmake_minimum_required (VERSION 2.8.3)
 include(CheckFunctionExists)
 include(CheckCXXCompilerFlag)
 
@@ -108,10 +110,10 @@ set (QTERM_UI_SRC
     src/vm_viewer/qterminal/forms/bookmarkswidget.ui
     src/vm_viewer/qterminal/forms/fontdialog.ui
 )
-set (QTERM_RCC_SRC
-    #src/vm_viewer/qterminal/icons.qrc
-    src/qt_virt_manager.qrc
-)
+#set (QTERM_RCC_SRC
+#    #src/vm_viewer/qterminal/icons.qrc
+#    src/qt_virt_manager.qrc
+#)
 set (QTERM_TS
     src/vm_viewer/qterminal/translations/qterminal_cs.ts
     src/vm_viewer/qterminal/translations/qterminal_de.ts
@@ -1072,7 +1074,7 @@ if ( QT4_BUILD )
     include("${CMAKE_MODULE_PATH}/CMakeQt4.txt")
     qt4_wrap_cpp (MOC_SOURCES ${HEADERS})
     qt4_wrap_ui  (UI_SRCS ${QTERM_UI_SRC})
-    qt4_add_resources(QTERM_RCC ${QTERM_RCC_SRC})
+    #qt4_add_resources(QTERM_RCC ${QTERM_RCC_SRC})
     #qt4_add_translation(QTERM_QM ${QTERM_TS})
     qt4_wrap_cpp (MOC_VIEWER_SOURCES ${VIEWER_HEADERS})
     qt4_add_resources(VIEWER_RCC ${VIEWER_RCC_SRC})
@@ -1082,7 +1084,7 @@ else ( QT4_BUILD )
     include("${CMAKE_MODULE_PATH}/CMakeQt5.txt")
     qt5_wrap_cpp (MOC_SOURCES ${HEADERS})
     qt5_wrap_ui  (UI_SRCS ${QTERM_UI_SRC})
-    qt5_add_resources(QTERM_RCC ${QTERM_RCC_SRC})
+    #qt5_add_resources(QTERM_RCC ${QTERM_RCC_SRC})
     qt5_add_translation(QTERM_QM ${QTERM_TS})
     qt5_wrap_cpp (MOC_VIEWER_SOURCES ${VIEWER_HEADERS})
     qt5_add_resources(VIEWER_RCC ${VIEWER_RCC_SRC})
@@ -1167,8 +1169,6 @@ MESSAGE(STATUS "Found includes :
     ${SPICE_CLIENT_GLIB2_INCLUDE_DIRS}
     ${LibVirt_INCLUDE_DIRS}
     ${QTERMWIDGET_INCLUDE_DIRS}
-    ${LIBVNCCLIENT_INCLUDE_DIRS}
-    ${KRDC_INCLUDE_DIRS}
     ${UTF8PROC_INCLUDE_DIRS}"
 )
 MESSAGE(STATUS "Found BUILD_PROJECT_LIBRARIES: ${BUILD_PROJECT_LIBRARIES}")
@@ -1211,7 +1211,7 @@ if    (NOT APPLE)
 else  (NOT APPLE)
     install ( FILES src/icons/256x256/apps/virtual-engineering.png
         DESTINATION /Applications/${PROJECT_NAME}.app/Contents/Resources )
-    MESSAGE(STATUS "Copy app icon for QtVirtManaget")
+    MESSAGE(STATUS "Copy app icon for QtVirtManager")
 endif (NOT APPLE)
 
 if ( WITH_VNC_SUPPORT OR WITH_SPICE_SUPPORT )

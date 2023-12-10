@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Qt5 Remote Viewer
+GenericName=Qt5 Remote Desktop Viewer
+Comment=Access to remote desktops
+Type=Application
+Categories=Network;
+Icon=remote-desktop-viewer
+Exec=qt5-remote-viewer %u
+Terminal=false
+StartupNotify=true
+MimeType=x-scheme-handler/spice;x-scheme-handler/vnc;application/x-virt-viewer;

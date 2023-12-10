@@ -3,7 +3,7 @@
 StoragePoolModel::StoragePoolModel(QObject *parent) :
     Model(parent)
 {
-    defined = QIcon::fromTheme("storage");
+    defined = QIcon::fromTheme("folder-database");
     //created = QIcon::fromTheme("storagePool-create");
     //onViewIcon = QIcon::fromTheme("overview");
 }

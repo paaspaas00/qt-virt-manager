@@ -19,6 +19,10 @@ VirtDomainControl::VirtDomainControl(QWidget *parent) :
     entityList->setColumnWidth(1, settings.value("column1", 32).toInt());
     entityList->setColumnWidth(2, settings.value("column2", 32).toInt());
     entityList->setColumnWidth(3, settings.value("column3", 32).toInt());
+
+    entityList->setAlternatingRowColors(true);
+    entityList->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+
     int area_int = settings.value("ToolBarArea", 4).toInt();
     settings.endGroup();
     toolBar = new DomainToolBar(this);

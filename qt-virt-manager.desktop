@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Qt5 VirtManager
+GenericName=Qt5 Virtual Machine Manager
+Type=Application
+Categories=System;
+Icon=virtual-engineering
+Exec=qt5-virt-manager
+Terminal=false
+StartupNotify=true

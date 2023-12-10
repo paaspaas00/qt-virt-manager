@@ -8,15 +8,17 @@ MainWindow::MainWindow(QWidget *parent)
                 QSizePolicy(
                     QSizePolicy::MinimumExpanding,
                     QSizePolicy::MinimumExpanding));
+
     setMinimumSize(100, 100);
     setContentsMargins(0, 0, 0, 5);
+    
     setWindowTitle(tr("Qt VirtManager"));
     QIcon::setThemeName("QtVirtManager");
     setWindowIcon(QIcon::fromTheme("virtual-engineering"));
     //setMouseTracking(true);
-    setDockOptions(
-                QMainWindow::AnimatedDocks |
-                QMainWindow::ForceTabbedDocks);
+
+    setDockOptions(QMainWindow::AnimatedDocks | QMainWindow::ForceTabbedDocks);
+
     migrate_settings_to_INI_format();
     int _viewMode = settings.value("ViewMode", 0).toInt();
     viewMode = static_cast<VIEW_MODE>(_viewMode);
@@ -839,7 +841,9 @@ void MainWindow::closeCurrentConnection()
 void MainWindow::closeAllConnections()
 {
     const int count = connListWidget->list->getListItemCount();
-    for (int i = 0; i< count; i++) closeConnection(i);
+    for (int i = 0; i< count; i++) {
+        closeConnection(i);
+    }
 }
 void MainWindow::closeConnection(int i)
 {

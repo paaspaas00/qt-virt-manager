@@ -4,20 +4,18 @@
 URLMenu::URLMenu(QWidget *parent) :
     QMenu(parent)
 {
-    delURL = addAction(
-                QIcon::fromTheme("delete"),
-                tr("delete URL from list"));
-    clearList = addAction(
-                QIcon::fromTheme("edit-clear"),
-                tr("clear URL list"));
+    delURL = addAction(QIcon::fromTheme("delete"), tr("delete URL from list"));
+    clearList = addAction(QIcon::fromTheme("edit-clear"), tr("clear URL list"));
 
     connect(this, SIGNAL(triggered(QAction*)),
             this, SLOT(actionTriggered(QAction*)));
 }
+
 Menu_Act URLMenu::getState() const
 {
     return state;
 }
+
 void URLMenu::actionTriggered(QAction *act)
 {
     if ( act==clearList ) {

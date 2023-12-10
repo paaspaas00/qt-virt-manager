@@ -47,7 +47,7 @@ CreateVirtNWFilter::CreateVirtNWFilter(
     xmlFileName = task.args.path;
     ptr_ConnPtr = task.srcConnPtr;
     setWindowTitle(tr("NWFilter Editor"));
-    setWindowIcon(QIcon::fromTheme("nwfilter"));
+    setWindowIcon(QIcon::fromTheme("view-filter"));
     setEnabled(false);
 
     name = new QLineEdit(this);

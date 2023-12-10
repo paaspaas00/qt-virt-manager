@@ -7,11 +7,11 @@ DomainToolBar::DomainToolBar(QWidget *parent) :
     setMovable(true);
     setFloatable(false);
     start_Action = new QAction(this);
-    start_Action->setIcon(QIcon::fromTheme("start"));
+    start_Action->setIcon(QIcon::fromTheme("media-playback-start"));
     start_Action->setToolTip(tr("Start"));
     start_Menu = new QMenu(this);
     restore_Action = start_Menu->addAction(tr("Restore"));
-    restore_Action->setIcon(QIcon::fromTheme("start"));
+    restore_Action->setIcon(QIcon::fromTheme("media-playback-pause"));
     start_Action->setMenu(start_Menu);
     pause_Action = new QAction(this);
     pause_Action->setIcon(QIcon::fromTheme("pause"));

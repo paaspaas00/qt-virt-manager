@@ -23,20 +23,19 @@ void ToolBar::initActions()
     _deleteAction->setIcon ( QIcon::fromTheme("list-remove") );
     _openAction = new QAction(
                 tr("Open Connection"), this);
-    _openAction->setIcon ( QIcon::fromTheme("connect") );
+    _openAction->setIcon ( QIcon::fromTheme("network-connect") );
     _closeAction = new QAction(
                 tr("Close Connection"), this);
-    _closeAction->setIcon ( QIcon::fromTheme("disconnect") );
+    _closeAction->setIcon ( QIcon::fromTheme("network-disconnect") );
     _closeAllAction = new QAction(
                 tr("Close all Connections"), this);
-    _closeAllAction->setIcon ( QIcon::fromTheme("disconnect") );
+    _closeAllAction->setIcon ( QIcon::fromTheme("network-disconnect") );
     _overwiewAction = new QAction(
                 tr("Overview of Connection"), this);
-    _overwiewAction->setIcon ( QIcon::fromTheme("overview") );
+    _overwiewAction->setIcon ( QIcon::fromTheme("view-visible") );
     _closeOverview = new QAction(
                 tr("Close Overview"), this);
-    _closeOverview->setIcon ( QIcon::fromTheme("overview-stop") );
-
+    _closeOverview->setIcon ( QIcon::fromTheme("view-hidden") );
     addAction(_openAction);
     addAction(_closeAction);
     addAction(_closeAllAction);
